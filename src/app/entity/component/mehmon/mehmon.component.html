@@ -1,0 +1,230 @@
+<mat-progress-bar *ngIf="progres!" mode="indeterminate"></mat-progress-bar>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Xona</mat-card-title>
+    <mat-card-subtitle>Xona bilan ishlash bo'limi</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-accordion
+      color="light"
+      displayMode="default"
+      [multi]="true"
+      [hideToggle]="false"
+    >
+      <mat-expansion-panel [hideToggle]="false" [(expanded)]="formOchiq">
+        <mat-expansion-panel-header
+          >Yangi xona qo'shish
+
+          <mat-icon class="mat-18">add</mat-icon>
+        </mat-expansion-panel-header>
+        <form [formGroup]="mehmonForm!" (ngSubmit)="saqlash()">
+          <mat-form-field *ngIf="tahrirRejim" appearance="outline">
+            <mat-label>ID</mat-label>
+            <input formControlName="id" matInput placeholder="ID" readonly />
+            <mat-hint>ID</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input formControlName="nom" matInput placeholder="Nom . . ." />
+            <mat-hint>Nom kiriting</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Qavat</mat-label>
+            <input
+              formControlName="qavat"
+              matInput
+              placeholder="Qavat . . ."
+            />
+            <mat-hint>Qavat kiriting</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Sig'im</mat-label>
+            <input
+              formControlName="sigim"
+              matInput
+              placeholder="Sig'im . . ."
+            />
+            <mat-hint>Sig'im kiriting</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>XonaTur</mat-label>
+            <input
+              formControlName="xonaTur"
+              matInput
+              placeholder="XonaTur . . ."
+            />
+            <mat-hint>XonaTur kiriting</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Narx</mat-label>
+            <input
+              formControlName="narx"
+              matInput
+              placeholder="Narx . . ."
+            />
+            <mat-hint>Narx kiriting</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Narx 1</mat-label>
+            <input
+              formControlName="narx_1"
+              matInput
+              placeholder="Narx 1 . . ."
+            />
+            <mat-hint>Narx 1 kiriting</mat-hint>
+          </mat-form-field>
+
+          <img class="img-account-profil rounded-circle mb-2"
+          [src]="rasmManzil??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyZWy7kT6uc49fJN5Wavk-4quDzKwV6JLtGw&usqp=CAU'">
+
+      <input type="file" class="file-input" (change)="onFileSelected($event)"      #fileUpload >
+      <button class="btn btn-primary" type="button" (click)="fileUpload.click()" >Rasm yuklash</button>
+
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>info</mat-label>
+            <input formControlName="info" matInput placeholder="info . . ." />
+            <mat-hint>info kiriting</mat-hint>
+          </mat-form-field>
+
+          <button
+            [disabled]="mehmonForm.invalid || surovBajarilmoqda"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
+            <mat-spinner
+              *ngIf="surovBajarilmoqda"
+              diameter="20"
+              color="accent"
+            ></mat-spinner>
+            Saqlash
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            type="reset"
+            (click)="tozalash()"
+          >
+            Bekor qilish
+          </button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-form-field appearance="outline">
+      <mat-label>Filter</mat-label>
+      <input
+        (input)="load($event.target)"
+        matInput
+        placeholder="Filter . . ."
+      />
+      <mat-hint>Kalit so'zni kiriting</mat-hint>
+    </mat-form-field>
+
+    <table
+      mat-table
+      matSort
+      matSortActive="id"
+      matSortDisableClear
+      matSortDirection="asc"
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+    >
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Id
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Nom
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="sigim">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Sig'im
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.sigim }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="qavat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Qavat
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.qavat }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="xonaTur">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Xona tur
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.xonaTur }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="narx">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Narx
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.narx }}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="narx_1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Narx
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.narx_1 }}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="info">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          info
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.info }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="amal">
+        <th mat-header-cell *matHeaderCellDef>Amallar</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="tahrir(element)">
+            <mat-icon color="primary" class="mat-18">edit</mat-icon>
+          </button>
+          <button mat-button (click)="ochirish(element)">
+            <mat-icon color="accent" class="mat-18">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      (page)="load()"
+      #paginator
+      [length]="length"
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

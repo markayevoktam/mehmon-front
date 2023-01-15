@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-sm navbar-dark">
+    <div class="container">
+        <div class="box">
+            <div>
+                <img src="https://static10.tgstat.ru/channels/_0/0c/0c8cceaffdb83ce07230e847feb482d2.jpg" width="50"
+                    height="50" class="d-inline-block align-top rounded-circle" alt="">
+
+            </div>
+            <div>
+                <a class="navbar-brand ml-2" style="color: rgb(0, 0, 0); font-size: 25px;" href="#" data-abc="true">TATU
+                    Qarshi filiali</a>
+            </div>
+        </div>
+
+        <div class="box_icon">
+
+
+         
+            <a [routerLink]="['/login']" class="icon">
+                <button mat-button color="dark">Kirish</button>
+            </a>
+
+        </div>
+    </div>
+</nav>
+<!-- Main Body -->
+<div class="container">
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-12 pb-4">
+            <div>
+              
+
+
+
+            </div>
+
+            <div class="form-group">
+                <input (input)="load($event.target)" type="text" class="form-control" name="key" id="key"
+                    aria-describedby="key" placeholder="Qidirish"
+                    style="background-color: white; border-radius: 8px; border: none; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.612) 0px 1px 2px; padding: 10px;">
+                <small id="key" class="form-text text-muted">Qidirish uchun yozing</small>
+            </div>
+
+
+            <!-- Card -->
+
+
+            <!-- <div id="container" *ngFor="let t of talabalar" [routerLink]="['info', t.id]">
+                <div class="product-image">
+                    <img [src]="getRasm(t?.rasm)" class="card-img" alt="...">
+                </div>
+                <div class="product-details">
+
+                    <h1 class="card-title">{{t.ism}} {{t.familya}}</h1>
+                 <div class="card-body">
+
+                        <p class="card-text" style="font-size: 20px;">{{t?.guruh?.yunalish?.fakultet?.nom}}</p>
+                        <p class="card-text" class="text-muted" style="font-size: 25px;">{{t?.guruh?.yunalish?.nom}}</p>
+                    </div>
+
+                    
+                </div>
+            </div>
+        
+ -->
+<!--  -->
+
+ <div class="card col-md-4" *ngFor="let t of mehmonlar"  >
+    <div class="row no-gutters" >
+      <div class="col-md-2">
+        <img [src]="getRasm(t?.rasm)" class="card-img" alt="..." id="home-card-1">
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{t.nom}}</h5>
+          <h5 class="card-title">{{t.qavat}}</h5>
+          <p class="card-text">{{t?.xonaTur}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ 
+
+            <!-- Card -->
+
+
+</div>
+    </div>
+</div>
